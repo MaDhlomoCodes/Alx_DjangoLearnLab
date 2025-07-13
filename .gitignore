@@ -7,4 +7,4 @@ db.sqlite3
 *.log
 */migrations/
 .env
-.vscode/
+.vscode/db.sqlite3
