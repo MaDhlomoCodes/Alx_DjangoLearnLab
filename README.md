@@ -1,9 +1,10 @@
 # LibraryProject
 
-This is a simple Django project created for learning purposes under the ALX "Introduction to Django" module.
+This Django project was created as part of the ALX Introduction to Django module.
 
 ## How to Run
 
-1. Activate virtual environment:
+1. Activate the virtual environment:
+
    ```bash
    source venv/bin/activate
