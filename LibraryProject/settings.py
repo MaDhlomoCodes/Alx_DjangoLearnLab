@@ -1,3 +1,5 @@
+# ALX Intro to Django settings
+
 """
 Django settings for LibraryProject project.
 
