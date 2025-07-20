@@ -1,6 +1,6 @@
 # LibraryProject
 
-This Django project was created as part of the ALX Introduction to Django module.
+This project is the starting point for learning Django with ALX. It contains the base Django project setup including settings, URLs, and app config.
 
 ## How to Run
 
