@@ -4,8 +4,10 @@ from .models import Book, Library
 from django.views.generic.detail import DetailView
 
 # Auth imports
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 
 # -----------------------
