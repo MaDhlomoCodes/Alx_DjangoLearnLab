@@ -10,7 +10,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 
 # Custom user creation form
-from accounts.forms import CustomUserCreationForm
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 # Form for book
 from .forms import BookForm
