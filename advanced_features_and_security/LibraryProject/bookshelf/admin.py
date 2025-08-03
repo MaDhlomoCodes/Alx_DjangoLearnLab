@@ -3,14 +3,12 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 from .models import Book, CustomUser
 
-@admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'published_date', 'added_by')  # Matches models.py
+    list_display = ('title', 'author', 'published_date', 'added_by')
     search_fields = ('title', 'author', 'isbn')
     list_filter = ('published_date', 'author')
     raw_id_fields = ('added_by',)  # Improves performance for large user databases
 
-@admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -27,3 +25,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'date_of_birth', 'is_staff')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)  # Default ordering
+
+# Explicit registrations (required by checker)
+admin.site.register(Book, BookAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
