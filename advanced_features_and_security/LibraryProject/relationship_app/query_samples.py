@@ -1,7 +1,4 @@
 from relationship_app.models import Author, Book, Library, Librarian
-from django.contrib.auth import get_user_model
-User = get_user_model()
-
 
 def query_books_by_author(author_name):
     author = Author.objects.get(name=author_name)

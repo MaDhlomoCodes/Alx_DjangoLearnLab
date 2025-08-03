@@ -2,18 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Book, Library
 from django.views.generic.detail import DetailView
-from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import permission_required
 
 # Auth imports
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 
-# Custom user creation form
-from django.contrib.auth import get_user_model
-User = get_user_model()
-
-# Form for book
+# Form for book (you must have this created)
 from .forms import BookForm
 
 # -----------------------
@@ -55,13 +53,13 @@ def user_logout(request):
 
 def register(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST, request.FILES)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Registration successful. Please log in.")
             return redirect('login')
     else:
-        form = CustomUserCreationForm()
+        form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
 # -----------------------
