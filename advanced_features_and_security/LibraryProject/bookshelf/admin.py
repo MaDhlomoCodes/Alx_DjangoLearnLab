@@ -1,15 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Book, CustomUser
 from django.utils.translation import gettext_lazy as _
+from .models import Book, CustomUser
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'publication_year')  
-    search_fields = ('title', 'author')                     
-    list_filter = ('publication_year',)                      
+    list_display = ('title', 'author', 'publication_year')
+    search_fields = ('title', 'author')
+    list_filter = ('publication_year',)
 
-# New CustomUser admin
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
