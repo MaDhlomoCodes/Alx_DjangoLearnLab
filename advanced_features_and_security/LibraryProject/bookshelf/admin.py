@@ -5,25 +5,25 @@ from .models import Book, CustomUser
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'publication_year')
-    search_fields = ('title', 'author')
-    list_filter = ('publication_year',)
+    list_display = ('title', 'author', 'published_date', 'added_by')  # Matches models.py
+    search_fields = ('title', 'author', 'isbn')
+    list_filter = ('published_date', 'author')
+    raw_id_fields = ('added_by',)  # Improves performance for large user databases
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password')}),
+        (None, {'fields': ('email', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'date_of_birth', 'profile_photo')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
-
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2'),
+            'fields': ('email', 'password1', 'password2', 'first_name', 'last_name', 'date_of_birth', 'profile_photo'),
         }),
     )
-
-    list_display = ('username', 'email', 'date_of_birth', 'is_staff')
-    search_fields = ('username', 'email')
+    list_display = ('email', 'first_name', 'last_name', 'date_of_birth', 'is_staff')
+    search_fields = ('email', 'first_name', 'last_name')
+    ordering = ('email',)  # Default ordering
