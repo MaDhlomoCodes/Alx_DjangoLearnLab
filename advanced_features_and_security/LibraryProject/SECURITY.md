@@ -22,3 +22,20 @@
 - Restricted to self-hosted resources
 - Inline styles/scripts disabled
 - No external resources allowed
+
+## HTTPS Implementation
+
+### Security Measures
+1. **HTTPS Enforcement**:
+   - All HTTP requests redirected to HTTPS
+   - HSTS enabled with 1-year duration
+   - Includes subdomains and preload
+
+2. **Cookie Security**:
+   - Session cookies: HTTPS-only
+   - CSRF cookies: HTTPS-only
+
+3. **Security Headers**:
+   - Clickjacking protection (X-Frame-Options)
+   - XSS protection
+   - MIME sniffing prevention
