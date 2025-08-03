@@ -2,10 +2,24 @@
 
 {% block content %}
     <h1>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Book</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
+    <form method="post" enctype="multipart/form-data">  <!-- Added enctype for file uploads -->
+        {% csrf_token %}  <!-- CSRF token included as required -->
+        
+        {# Manual form rendering for better security control #}
+        <div class="form-group">
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
-    <a href="{% url 'book_list' %}">Cancel</a>
 {% endblock %}
