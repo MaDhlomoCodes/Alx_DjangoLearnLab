@@ -1,0 +1,21 @@
+echo "# Python
+*.pyc
+*~
+__pycache__
+.env
+venv/
+
+# Database
+*.sqlite3
+*.db
+
+# Django
+staticfiles/
+media/
+
+# IDE
+.idea/
+.vscode/
+
+# macOS
+.DS_Store" > .gitignore
