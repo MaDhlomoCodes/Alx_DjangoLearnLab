@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BookShelf</title>
+</head>
+<body>
+    <header>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.email }}! (<a href="{% url 'admin:logout' %}">Logout</a>)</p>
+        {% endif %}
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

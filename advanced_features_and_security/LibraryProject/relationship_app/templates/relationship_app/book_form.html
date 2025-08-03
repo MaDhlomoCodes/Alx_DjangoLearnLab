@@ -1,0 +1,6 @@
+<!-- Update form action -->
+ <form action="{% if book %}{% url 'relationship:edit_book' book.pk %}{% else %}{% url 'relationship:add_book' %}{% endif %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if book %}Update{% else %}Add{% endif %} Book</button>
+</form>

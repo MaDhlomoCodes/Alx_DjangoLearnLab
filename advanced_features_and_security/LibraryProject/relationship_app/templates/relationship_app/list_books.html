@@ -1,16 +1,8 @@
-<!-- relationship_app/templates/list_books.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>List of Books</title>
-</head>
-<body>
-    <h1>Books Available:</h1>
-    <ul>
-        {% for book in books %}
-        <li>{{ book.title }} by {{ book.author.name }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% for book in books %}
+    <li>
+        {{ book.title }}
+        <a href="{% url 'relationship:edit_book' book.pk %}">Update</a>
+        <a href="{% url 'relationship:delete_book' book.pk %}">Remove</a>
+    </li>
+{% endfor %}
+<a href="{% url 'relationship:add_book' %}">Add to Catalog</a>
