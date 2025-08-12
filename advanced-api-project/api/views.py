@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .models import Author, Book
 from .serializers import AuthorSerializer, BookSerializer
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import generics, permissions
 
 class AuthorViewSet(viewsets.ModelViewSet):
@@ -35,7 +35,7 @@ class BookDetailView(generics.RetrieveAPIView):
 class BookCreateView(generics.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [permissions.IsAuthenticated]  
+    permission_classes = [IsAuthenticated]  
 
 class BookUpdateView(generics.UpdateAPIView):
     queryset = Book.objects.all()
