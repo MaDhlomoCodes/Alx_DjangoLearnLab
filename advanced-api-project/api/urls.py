@@ -5,7 +5,7 @@ from django.views.generic.list import BaseListView
 
 
 urlpatterns = [
-    path('books/', BaseListView.as_view(), name='book-list'),
+    path('books/', BookListView.as_view(), name='book-list'),
     path('books/<int:pk>/', BaseDetailView.as_view(), name='book-detail'),
     path('books/create/', BaseCreateView.as_view(), name='book-create'),
     path('books/<int:pk>/update/', BaseUpdateView.as_view(), name='book-update'),
