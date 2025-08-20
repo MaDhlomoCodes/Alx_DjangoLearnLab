@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}MaDhlomo Blog{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    .container { max-width: 800px; margin: 2rem auto; }
+    header, footer { margin-bottom: 1rem; }
+    img.avatar { width: 96px; height: 96px; object-fit: cover; border-radius: 50%; }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong>MaDhlomo Blog</strong></li>
+      </ul>
+      <ul>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">Profile</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    {% for message in messages %}
+      <article class="{{ message.tags }}">{{ message }}</article>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="container">
+    <small>© {{ now|date:'Y' }} MaDhlomo Blog</small>
+  </footer>
+</body>
+</html>

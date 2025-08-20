@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -28,8 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# Define Applications
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,8 +76,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_blog',   # database name
-        'USER': 'django',        # your DB username
-        'PASSWORD': 'django',    # your DB password
+        'USER': 'django',        # DB username
+        'PASSWORD': 'django',    # DB password
         'HOST': 'localhost',     # or container service name
         'PORT': '5432',          # default PostgreSQL port
     }
@@ -115,6 +113,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+#Authorisation redirects 
+LOGIN_REDIRECT_URL = 'profile'   
+LOGOUT_REDIRECT_URL = 'login' 
+LOGIN_URL = 'login'
+
+# MEDIA:
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

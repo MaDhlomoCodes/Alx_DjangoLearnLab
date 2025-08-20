@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Login · MaDhlomo Blog{% endblock %}
+{% block content %}
+<h2>Login</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <label>Username {{ form.username }}</label>
+  <label>Password {{ form.password }}</label>
+  <button type="submit">Sign in</button>
+</form>
+<p>Don’t have an account? <a href="{% url 'register' %}">R
