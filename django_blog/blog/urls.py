@@ -7,15 +7,17 @@ from .views import (
 )
 
 urlpatterns = [
+    # Auth & Profile 
     path('login/', LoginView.as_view(template_name='blog/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='blog/logout.html'), name='logout'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
-    # CRUD OPERATIONS
-    path('', PostListView.as_view(), name='home'),  # Homepage = list of posts
-    path('post/', PostListView.as_view(), name='post-list'),
-    path('post/new/', PostCreateView.as_view(), name='post-create'),
-    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
-    path('post/<int:pk>/edit/', PostUpdateView.as_view(), name='post-update'),
-    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+
+    # Blog CRUD 
+    path('', PostListView.as_view(), name='home'),                
+    path('post/', PostListView.as_view(), name='post-list'),      
+    path('post/new/', PostCreateView.as_view(), name='post-create'), 
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),  
+    path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),  
+    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),  
 ]
