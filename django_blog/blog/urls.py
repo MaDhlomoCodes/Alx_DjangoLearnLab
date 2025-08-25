@@ -13,6 +13,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='blog/logout.html'), name='logout'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+    path('search/', views.search, name='search'),
 
     # Blog CRUD 
     path('', PostListView.as_view(), name='home'),
