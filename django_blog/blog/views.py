@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm, PostForm, CommentForm
-from .models import Post, Comment
+from .models import Post, Comment, Tag 
 
 # --- Registration ---
 def register(request):
@@ -143,3 +143,16 @@ def search(request):
     ).distinct()
     return render(request, 'blog/search_results.html', {'results': results, 'query': query})
 
+class PostByTagListView(ListView):
+    model = Post
+    template_name = "blog/posts_by_tag.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        tag_slug = self.kwargs.get('tag_slug')
+        return Post.objects.filter(tags__slug=tag_slug).distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag'] = self.kwargs.get('tag_slug')
+        return context

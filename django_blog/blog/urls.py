@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 from .views import (
     PostListView, PostDetailView,
-    PostCreateView, PostUpdateView, PostDeleteView,
+    PostCreateView, PostUpdateView, PostDeleteView, PostByTagListView, 
     CommentCreateView, CommentUpdateView, CommentDeleteView
 )
 
@@ -14,6 +14,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('search/', views.search, name='search'),
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='posts-by-tag'),
+
 
     # Blog CRUD 
     path('', PostListView.as_view(), name='home'),
