@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Profile
 from .models import Post
 from .models import Comment
+from taggit.forms import TagWidget
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -31,7 +32,10 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'avatar']
+        fields = ['title', 'content', 'tags']
+        widgets = {
+            'tags': TagWidget(),  
+        }
 
 class PostForm(forms.ModelForm):
     class Meta:
